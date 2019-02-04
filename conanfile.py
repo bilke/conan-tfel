@@ -16,8 +16,8 @@ class TfelConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        tools.get("https://sourceforge.net/projects/tfel/files/tfel-{0}.tar.bz2/download"
-                  .format(self.version), filename='tfel-3.2.0.tar.bz2')
+        tools.get("https://ogsstorage.blob.core.windows.net/tmp/tfel-{0}.tar.bz2"
+                  .format(self.version))
         extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, "tfel")
         # This small hack might be useful to guarantee proper /MT /MD linkage
