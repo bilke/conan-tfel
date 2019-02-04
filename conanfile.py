@@ -16,9 +16,9 @@ class TfelConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        tools.get("https://github.com/thelfer/tfel/archive/TFEL-{0}.tar.gz"
-                  .format(self.version))
-        extracted_dir = self.name + "-" + self.name.upper() + "-" + self.version
+        tools.get("https://sourceforge.net/projects/tfel/files/tfel-{0}.tar.bz2/download"
+                  .format(self.version), filename='tfel-3.2.0.tar.bz2')
+        extracted_dir = self.name + "-" + self.version
         os.rename(extracted_dir, "tfel")
         # This small hack might be useful to guarantee proper /MT /MD linkage
         # in MSVC if the packaged project doesn't have variables to set it
@@ -49,6 +49,5 @@ conan_basic_setup()''')
         self.copy("*.a", dst="lib", keep_path=False)
 
     def package_info(self):
-        # self.cpp_info.libs = ["tfel"]
         self.cpp_info.libs = tools.collect_libs(self)
 
