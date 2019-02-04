@@ -4,8 +4,8 @@ project(PackageTest CXX)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-if(APPLE)
-    # TODO: test on mac is basically disabled
+if(APPLE OR MSVC)
+    # TODO: test on mac and win is basically disabled
     add_executable(example example-mac.cpp)
 else()
     add_executable(example example.cpp)
