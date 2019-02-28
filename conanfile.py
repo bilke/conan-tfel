@@ -11,8 +11,8 @@ class TfelConan(ConanFile):
     description = "MFront is a code generator which translates a set of closely related domain specific languages into plain C++ on top of the TFEL library"
     topics = ("numerics", "mechanics", "materials")
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    # options = {"shared": [True, False]}
+    # default_options = "shared=False" # is ignored as tfel always builds shared libraries
     generators = "cmake"
 
     def source(self):
