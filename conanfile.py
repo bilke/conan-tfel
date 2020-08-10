@@ -16,9 +16,12 @@ class TfelConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        tools.get("https://github.com/thelfer/tfel/archive/TFEL-{0}.tar.gz"
-                  .format(self.version))
-        extracted_dir = self.name + "-" + self.name.upper() + "-" + self.version
+        #tools.get("https://github.com/thelfer/tfel/archive/TFEL-{0}.tar.gz"
+        #          .format(self.version))
+        #extracted_dir = self.name + "-" + self.name.upper() + "-" + self.version
+        # TODO: temp. fix for gcc 10 issues
+        tools.get("https://github.com/thelfer/tfel/archive/rliv-3.3.zip")
+        extracted_dir = "tfel-rliv-3.3"
         os.rename(extracted_dir, "tfel")
         # This small hack might be useful to guarantee proper /MT /MD linkage
         # in MSVC if the packaged project doesn't have variables to set it
