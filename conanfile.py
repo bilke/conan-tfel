@@ -4,10 +4,10 @@ from conans import ConanFile, CMake, tools
 
 class TfelConan(ConanFile):
     name = "tfel"
-    version = "3.2.0"
+    version = "3.4"
     license = "MIT"
     author = "Lars Bilke, lars.bilke@ufz.de"
-    url = "https://github.com/bilke/tfel"
+    url = "https://github.com/bilke/conan-tfel"
     description = "MFront is a code generator which translates a set of closely related domain specific languages into plain C++ on top of the TFEL library"
     topics = ("numerics", "mechanics", "materials")
     settings = "os", "compiler", "build_type", "arch"
@@ -16,10 +16,7 @@ class TfelConan(ConanFile):
     generators = "cmake"
 
     def source(self):
-        tools.get("https://ogsstorage.blob.core.windows.net/tmp/tfel-{0}.tar.bz2"
-                  .format(self.version))
-        extracted_dir = self.name + "-" + self.version
-        os.rename(extracted_dir, "tfel")
+        self.run("git clone --depth=1 --branch rliv-{0} https://github.com/thelfer/tfel.git".format(self.version))
         # This small hack might be useful to guarantee proper /MT /MD linkage
         # in MSVC if the packaged project doesn't have variables to set it
         # properly
